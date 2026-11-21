@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -o Flow-patch.zip
+      - run: unzip -o fork/Flow-patch-v3.0.5.zip -d src
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
