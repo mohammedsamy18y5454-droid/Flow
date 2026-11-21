@@ -6,6 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: fork
+      - uses: actions/checkout@v4
+        with:
+          repository: Flow-Tube/Flow
+          ref: v3.0.5
+          path: src
       - run: unzip -o fork/Flow-patch-v3.0.5.zip -d src
       - uses: actions/setup-java@v4
         with:
@@ -13,7 +20,8 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
       - run: chmod +x gradlew && ./gradlew assembleGithubDebug --no-daemon
+        working-directory: src
       - uses: actions/upload-artifact@v4
         with:
           name: flow-debug-apk
-          path: app/build/outputs/apk/github/debug/*.apk
+          path: src/app/build/outputs/apk/github/debug/*.apk
