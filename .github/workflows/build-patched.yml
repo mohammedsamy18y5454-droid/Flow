@@ -14,10 +14,6 @@ jobs:
           ref: v3.0.5
           path: src
       - run: unzip -o fork/Flow-patch-v3.0.5.zip -d src
-      - name: Build for arm64 phones only
-        run: |
-          sed -i 's/"armeabi-v7a", "arm64-v8a", "x86", "x86_64"/"arm64-v8a"/g' src/app/build.gradle.kts
-          sed -i 's/isUniversalApk = true/isUniversalApk = false/' src/app/build.gradle.kts
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
